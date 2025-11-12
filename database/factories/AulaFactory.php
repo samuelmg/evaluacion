@@ -17,7 +17,8 @@ class AulaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'numero' => fake()->bothify('?-##'),
+            'capacidad' => fake()->numberBetween(10, 50),
         ];
     }
 }

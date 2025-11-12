@@ -16,6 +16,10 @@ Route::get('/bienvenida', function () {
 })->name('bienvenida');
 
 Route::resource('tarea', TareaController::class);//->middleware('auth');
+
+Route::post('agregar-mobiliario', [AulaController::class, 'agregarMobiliario'])
+    ->name('aula.agregar-mobiliario');
+
 Route::resource('aula', AulaController::class)->middleware('auth');
 Route::resource('edificio', EdificioController::class)->middleware('auth');
 

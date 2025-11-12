@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Aula;
 use App\Models\Edificio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,19 +16,22 @@ class EdificioSeeder extends Seeder
     public function run(): void
     {
         // Inserta información utilizando Query Builder
-        DB::table('edificios')->insert([
-            ['nombre' => 'Edificio A', 'niveles' => 5],
-            ['nombre' => 'Edificio B', 'niveles' => 10],
-            ['nombre' => 'Edificio C', 'niveles' => 3],
-        ]);
+        // DB::table('edificios')->insert([
+        //     ['nombre' => 'Edificio A', 'niveles' => 5],
+        //     ['nombre' => 'Edificio B', 'niveles' => 10],
+        //     ['nombre' => 'Edificio C', 'niveles' => 3],
+        // ]);
 
         // Inserta información utilizando factories
-        Edificio::factory()->count(10)->create();
+        Edificio::factory()
+            ->has(Aula::factory()->count(15))
+            ->count(10)
+            ->create();
 
         // Inserta información utilizando el modelo
-        Edificio::create([
-            'nombre' => 'Edificio Especial',
-            'niveles' => 15,
-        ]);
+        // Edificio::create([
+        //     'nombre' => 'Edificio Especial',
+        //     'niveles' => 15,
+        // ]);
     }
 }

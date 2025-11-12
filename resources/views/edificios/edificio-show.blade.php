@@ -5,7 +5,7 @@
     <ul>
         @foreach ($edificio->aulas as $aula)
             <li>
-                Número: {{ $aula->numero }} || Capacidad: {{ $aula->capacidad }}
+                Número: <a href="{{ route('aula.show', $aula) }}">{{ $aula->numero }}</a> || Capacidad: {{ $aula->capacidad }}
                 <a href="{{ route('aula.edit', $aula->id) }}" class="btn btn-warning btn-sm">Editar</a>
             </li>
         @endforeach

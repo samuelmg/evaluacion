@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aula;
 use App\Models\Edificio;
+use App\Models\Mobiliario;
 use Illuminate\Http\Request;
 
 class AulaController extends Controller
@@ -47,7 +48,11 @@ class AulaController extends Controller
      */
     public function show(Aula $aula)
     {
-        //
+        return view('aulas.aula-show')
+            ->with([
+                'aula' => $aula,
+                'mobiliarioDisponible' => Mobiliario::all(),
+            ]);
     }
 
     /**
@@ -77,5 +82,16 @@ class AulaController extends Controller
     public function destroy(Aula $aula)
     {
         //
+    }
+
+    public function agregarMobiliario(Request $request)
+    {
+        $mobiliarioId = $request->mobiliario_id;
+        $aulaId = $request->aula_id;
+
+        $aula = Aula::find($aulaId);
+        $aula->mobiliario()->attach($mobiliarioId);
+
+        return redirect()->route('aula.show', $aulaId);
     }
 }
