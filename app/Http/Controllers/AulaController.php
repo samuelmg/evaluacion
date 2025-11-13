@@ -84,14 +84,9 @@ class AulaController extends Controller
         //
     }
 
-    public function agregarMobiliario(Request $request)
+    public function agregarMobiliario(Aula $aula, Request $request)
     {
-        $mobiliarioId = $request->mobiliario_id;
-        $aulaId = $request->aula_id;
-
-        $aula = Aula::find($aulaId);
-        $aula->mobiliario()->attach($mobiliarioId);
-
-        return redirect()->route('aula.show', $aulaId);
+        $aula->mobiliario()->sync($request->mobiliario_id);
+        return redirect()->route('aula.show', $aula);
     }
 }
