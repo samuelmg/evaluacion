@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Tarea;
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
+
+        // Gate::define('editar-tarea', function (User $user, Tarea $tarea) {
+        //     return $user->id != 1
+        //         ? Response::allow()
+        //         : Response::denyWithStatus(404);
+        // });
+        
     }
 }

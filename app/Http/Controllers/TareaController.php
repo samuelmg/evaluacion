@@ -6,6 +6,7 @@ use App\Models\Tarea;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Gate;
 
 class TareaController extends Controller implements HasMiddleware
 {
@@ -68,6 +69,7 @@ class TareaController extends Controller implements HasMiddleware
      */
     public function edit(Tarea $tarea)
     {
+        Gate::authorize('update', $tarea);
         return view('tareas.edit-tarea', compact('tarea'));
     }
 
@@ -76,6 +78,8 @@ class TareaController extends Controller implements HasMiddleware
      */
     public function update(Request $request, Tarea $tarea)
     {
+        Gate::authorize('update', $tarea);
+
         $request->validate([
             'titulo' => 'required|max:20',
             'descripcion' => [

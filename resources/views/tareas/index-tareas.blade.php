@@ -26,7 +26,12 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-warning" href="{{ route('tarea.edit', $tarea->id) }}">Editar</a>
+                                @can('update', $tarea)
+                                    <a class="btn btn-warning" href="{{ route('tarea.edit', $tarea->id) }}">Editar</a>
+                                @else
+                                    <span class="text-gray-500">No puedes editar</span>
+                                @endcan
+
                                 <form action="{{ route('tarea.destroy', $tarea->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
